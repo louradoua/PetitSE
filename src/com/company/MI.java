@@ -25,7 +25,7 @@ public class MI {
     }
 
     // Pose la question de savoir si la règle existe bien avec les prémisses données
-    private boolean regleDelenchee(Regle r){
+    private boolean regleValidee(Regle r){
         boolean s = true;
         String[] valeurs = r.getValeurs();
 
@@ -45,7 +45,7 @@ public class MI {
         if (condDansBDF(condAVerif)) s = true;
         else {
             for (int i=0;i<baseRegles.getTaille();i++){
-                if (regleDelenchee(baseRegles.getContenu().get(i))) {
+                if (regleValidee(baseRegles.getContenu().get(i))) {
                     String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
                     if (conclusion.equals(condAVerif)) s = true;
                 }
@@ -54,9 +54,41 @@ public class MI {
         return s;
     }
 
+    private boolean regleDelenchee(Regle r){
+        boolean s = true;
+        String[] valeurs = r.getValeurs();
+
+        for (int i=0;i<4;i++){
+            if (!valeurs[i].equals("")){ // s'il y a effectivement une règle à vérifier
+                if (!condDansBDF(valeurs[i])){
+                    s = false;
+                    // si ni l'appel récursif ni les faits ne le permettent, alors on ne peut pas vérfier la ccl
+                }
+            }
+        }
+        return s; // sinon, on renvoie vrai
+    }
+
     public void chainageAvant(){
-        // faire un tableau dejaDeclenchee de bool
-        boolean[] dejaDeclenchee;
+        // faire un tableau dejaDeclenchee de bool de la taille de la base de règles
+        boolean[] dejaDeclenchee = new boolean[baseRegles.getTaille()];
+        /*for (int i=0;i<dejaDeclenchee.length;i++) dejaDeclenchee[i] = false;*/
+
+        int cpt = 0; // compte les nouvelles découvertes au tour courant du tant que
+        do {
+            for (int i=0;i<baseRegles.getTaille();i++){
+                if (!dejaDeclenchee[i]){
+                    Regle r = baseRegles.getContenu().get(i);
+                    if (regleDelenchee(r)) {
+                        dejaDeclenchee[i] = true;
+                        baseFaits.ajoutBDF(r.getValeurs()[4]);
+                        cpt += 1;
+                    }
+                }
+            }
+        } while (cpt!=0);
+
+
 
     }
 

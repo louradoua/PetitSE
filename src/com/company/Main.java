@@ -9,10 +9,12 @@ public class Main {
         maBDF.ajoutBDF("F4");
         System.out.println(maBDF);*/
 
-        String[]t = {"c1","c2","","","","Concl"};
+        /*String[]t = {"c1","c2","","","","Concl"};
         Regle R = new Regle(t);
-        System.out.println(R);
+        System.out.println(R);*/
 
+        BDR maBDR = new BDR();
+        System.out.println(maBDR);
 
     }
 }

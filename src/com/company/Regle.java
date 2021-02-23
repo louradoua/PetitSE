@@ -27,9 +27,10 @@ public class Regle {
 
     @Override
     public String toString() {
-        return "Regle{" +
-                "schema=" + Arrays.toString(schema) +
-                ", valeurs=" + Arrays.toString(valeurs) +
-                '}';
+        String res = "Regle{" ;
+        for (int i=0; i<5; i++)
+            res +=  schema[i] + ": " + valeurs[i];
+
+        return res + "}";
     }
 }

@@ -83,12 +83,10 @@ public class MI {
     public boolean chainageArriere(String condAVerif){
         boolean s = false;
         if (condDansBDF(condAVerif)) s = true;
-        else {
-            for (int i=0;i<baseRegles.getTaille();i++){
-                if (verifRegleArriere(baseRegles.getContenu().get(i))) {
-                    String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
-                    if (conclusion.equals(condAVerif)) s = true;
-                }
+        for (int i=0;i<baseRegles.getTaille();i++){
+            if (verifRegleArriere(baseRegles.getContenu().get(i))) {
+               String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
+               if (conclusion.equals(condAVerif)) s = true;
             }
         }
         return s;

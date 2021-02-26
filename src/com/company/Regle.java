@@ -6,7 +6,7 @@ public class Regle {
     private String [] schema;
     private String [] valeurs;
 
-    public Regle(String[]val){
+   /* public Regle(String[]val){
         schema = new String[5];
         valeurs = new String[5];
 
@@ -15,6 +15,15 @@ public class Regle {
             else schema[i] = "Conclusion";
             valeurs[i] = val[i];
         }
+    }*/
+   public Regle(String[] schema){
+       this.schema = schema;
+       int m = schema.length;
+       this.valeurs = new String[m];
+   }
+
+    public void setRegle(String[] regle) {
+        this.valeurs = regle;
     }
 
     public String[] getSchema() {

@@ -5,10 +5,13 @@ import java.util.ArrayList;
 public class BDR {
     private ArrayList<Regle> contenu;
     private int taille;
+    private String fileName;
 
     public BDR(){
+
         contenu = new ArrayList<Regle>();
-        String[] t1 = {"personne_aisee","temps_libre","","","peut_voyager"};
+        fileName = NomBDR;
+        /*String[] t1 = {"personne_aisee","temps_libre","","","peut_voyager"};
         Regle r1 = new Regle(t1);
         contenu.add(r1);
 
@@ -26,7 +29,7 @@ public class BDR {
 
         String[] t5 = {"peut_faire_produit_artisanal","","","","peut_faire_oeuvre_art"};
         Regle r5 = new Regle(t5);
-        contenu.add(r5);
+        contenu.add(r5);*/
 
         taille = contenu.size();
     }

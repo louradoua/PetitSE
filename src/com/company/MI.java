@@ -24,35 +24,6 @@ public class MI {
         return s;
     }
 
-    // Pose la question de savoir si la règle existe bien avec les prémisses données
-    private boolean regleValidee(Regle r){
-        boolean s = true;
-        String[] valeurs = r.getValeurs();
-
-        for (int i=0;i<4;i++){
-            if (!valeurs[i].equals("")){ // s'il y a effectivement une règle à vérifier
-                if ((!condDansBDF(valeurs[i]))&&(!chainageArriere(valeurs[i]))){ // appel récursif au chainage arriere
-                    s = false;
-                    // si ni l'appel récursif ni les faits ne le permettent, alors on ne peut pas vérfier la ccl
-                }
-            }
-        }
-        return s; // sinon, on renvoie vrai
-    }
-
-    public boolean chainageArriere(String condAVerif){
-        boolean s = false;
-        if (condDansBDF(condAVerif)) s = true;
-        else {
-            for (int i=0;i<baseRegles.getTaille();i++){
-                if (regleValidee(baseRegles.getContenu().get(i))) {
-                    String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
-                    if (conclusion.equals(condAVerif)) s = true;
-                }
-            }
-        }
-        return s;
-    }
 
     private boolean regleDelenchee(Regle r){
         boolean s = true;
@@ -62,7 +33,6 @@ public class MI {
             if (!valeurs[i].equals("")){ // s'il y a effectivement une règle à vérifier
                 if (!condDansBDF(valeurs[i])){
                     s = false;
-                    // si ni l'appel récursif ni les faits ne le permettent, alors on ne peut pas vérfier la ccl
                 }
             }
         }
@@ -87,9 +57,37 @@ public class MI {
                 }
             }
         } while (cpt!=0);
+    }
 
 
+    // Pose la question de savoir si la règle existe bien avec les prémisses données
+    private boolean verifRegleArriere(Regle r){
+        boolean s = true;
+        String[] valeurs = r.getValeurs();
 
+        for (int i=0;i<4;i++){
+            if (!valeurs[i].equals("")){ // s'il y a effectivement une règle à vérifier
+                if ((!condDansBDF(valeurs[i]))&&(!chainageArriere(valeurs[i]))){ // appel récursif au chainage arriere
+                    s = false;
+                    // si ni l'appel récursif ni les faits ne le permettent, alors on ne peut pas vérfier la ccl
+                }
+            }
+        }
+        return s; // sinon, on renvoie vrai
+    }
+
+    public boolean chainageArriere(String condAVerif){
+        boolean s = false;
+        if (condDansBDF(condAVerif)) s = true;
+        else {
+            for (int i=0;i<baseRegles.getTaille();i++){
+                if (verifRegleArriere(baseRegles.getContenu().get(i))) {
+                    String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
+                    if (conclusion.equals(condAVerif)) s = true;
+                }
+            }
+        }
+        return s;
     }
 
     @Override

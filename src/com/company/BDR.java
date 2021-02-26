@@ -7,10 +7,16 @@ public class BDR {
     private int taille;
     private String fileName;
 
-    public BDR(){
+    public BDR(String nomBDR){
 
         contenu = new ArrayList<Regle>();
-        fileName = NomBDR;
+        fileName = nomBDR;
+        StreamDeRegles h = new StreamDeRegles(nomBDR);
+        taille = 0;
+        while (h.getRegleSuivante() != null){
+            contenu.add(h.getRegleSuivante());
+            taille++;
+        }
         /*String[] t1 = {"personne_aisee","temps_libre","","","peut_voyager"};
         Regle r1 = new Regle(t1);
         contenu.add(r1);

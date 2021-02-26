@@ -16,36 +16,35 @@ public class StreamDeRegles {
             System.out.println("File ready");
         }
         catch(Exception e){
-            System.out.println("[Error opening file]" + e);
+            System.out.println("[Error opening file in StreamDeRegles]" + e);
         }
         String line = null;
         try{
             line = buffer.readLine();
+            file.close();
         }
         catch(Exception e){
-            System.out.println("[Error reading line]" + e);
+            System.out.println("[Error reading line in StreamDeRegles]" + e);
         }
 
         String[] head;
         head = line.split(";");
         regle = new Regle(head);
-
-
-
     }
 
-    public String[] getRegleSuivante() {
+    public Regle getRegleSuivante() {
         String line;
         try{
             line = buffer.readLine();
             String[] head;
             head = line.split(";");
             regle.setRegle(head);
-            return regle
+            buffer.close();
+            return regle;
         }
         catch(Exception e){
             System.out.println("[Error reading line]" + e);
-            return [];
+            return null;
         }
 
     }

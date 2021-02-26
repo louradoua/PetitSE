@@ -6,9 +6,9 @@ public class MI {
     private BDF baseFaits;
     private BDR baseRegles;
 
-    public MI(BDF bf, BDR br){
-        baseFaits = bf;
-        baseRegles = br;
+    public MI(String bf, String br){
+        baseFaits = new BDF(bf);
+        baseRegles = new BDR(br);
     }
 
 

@@ -90,6 +90,20 @@ public class MI {
         return s;
     }
 
+
+/*    // fonctions de la correction de la prof
+    public boolean chArriere(String but){
+        if (condDansBDF(but))
+            return true;
+        for (int i=à;i<BRegles.getTaille();i++){
+            Regle rcourante = BRegle.getContenu().get(i);
+            if (rcourante.getValeurs()[4].equals(but))
+                if (verifRegleArriere(rcourante))
+                    return true;
+        }
+        return false;
+    }*/
+
     @Override
     public String toString() {
         return "MI{" +

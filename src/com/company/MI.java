@@ -2,10 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 
-// Servez vous la mif mais oubliez pas de comprendre un peu le principe sinon ça va se voir mdr
-// Surtout modifiez la variable s de sortie des fonctions, c'est propre à ma manière de coder donc c'est cramé af
-
-
 public class MI {
     private BDF baseFaits;
     private BDR baseRegles;
@@ -83,10 +79,12 @@ public class MI {
     public boolean chainageArriere(String condAVerif){
         boolean s = false;
         if (condDansBDF(condAVerif)) s = true;
-        for (int i=0;i<baseRegles.getTaille();i++){
-            if (verifRegleArriere(baseRegles.getContenu().get(i))) {
-               String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
-               if (conclusion.equals(condAVerif)) s = true;
+        else {
+            for (int i=0;i<baseRegles.getTaille();i++){
+                if (verifRegleArriere(baseRegles.getContenu().get(i))) {
+                    String conclusion = baseRegles.getContenu().get(i).getValeurs()[4];
+                    if (conclusion.equals(condAVerif)) s = true;
+                }
             }
         }
         return s;

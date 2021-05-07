@@ -16,7 +16,7 @@ public class StreamDeRegles {
             System.out.println("File ready");
         }
         catch(Exception e){
-            System.out.println("[Error opening file in StreamDeRegles]" + e);
+            System.out.println("erreur de lecture");
         }
         String line = null;
         try{
@@ -24,7 +24,7 @@ public class StreamDeRegles {
             file.close();
         }
         catch(Exception e){
-            System.out.println("[Error reading line in StreamDeRegles]" + e);
+            System.out.println("erreur de lecture");
         }
 
         String[] head;
@@ -43,7 +43,7 @@ public class StreamDeRegles {
             return regle;
         }
         catch(Exception e){
-            System.out.println("[Error reading line]" + e);
+            System.out.println("erreur de lecture");
             return null;
         }
 
